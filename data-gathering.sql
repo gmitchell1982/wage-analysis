@@ -51,8 +51,21 @@ left join
 AdventureWorks2019.Person.StateProvince as StateProvince
 on AddressInfo.StateProvinceID = StateProvince.StateProvinceID
 
+left join
+
+--sub-query to add columns about newest date of rate change for current employees
+(select
+BusinessEntityID, max(RateChangeDate) as NewestRateChangeDate
+from AdventureWorks2019.HumanResources.EmployeePayHistory as PayHistory
+group by  PayHistory.BusinessEntityID
+) as NewestRateDate
+on CurrentEmployees.BusinessEntityID = NewestRateDate.BusinessEntityID
+
 --only want info for current employees (CurrentFlag = 1)
 where CurrentFlag = 1
 
 --also only want info that uses home addresses for people (AddressTypeID = 2)
 and  AddressKey.AddressTypeID = 2
+
+--also only want the info for the current pay rate of current employees
+and PayHistory.RateChangeDate = NewestRateDate.NewestRateChangeDate
