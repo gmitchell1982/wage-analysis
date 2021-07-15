@@ -38,3 +38,6 @@ on CurrentEmployees.BusinessEntityID = AddressKey.BusinessEntityID
 
 --only want info for current employees (CurrentFlag = 1)
 where CurrentFlag = 1
+
+--also only want info that uses home addresses for people (AddressTypeID = 2)
+and  AddressKey.AddressTypeID = 2
