@@ -12,11 +12,11 @@ PayHistory.Rate, PayHistory.PayFrequency, PayHistory.RateChangeDate,
 --columns wanted from the person.person table
 Person.PersonType, Person.Demographics,
 
---column wanted from the person.businessentityaddress table
-AddressKey.AddressID,
+--columns wanted from the person.address table
+AddressInfo.AddressLine1, AddressInfo.AddressLine2, AddressInfo.City, AddressInfo.PostalCode, AddressInfo.SpatialLocation,
 
---columns wanted from ther person.address table
-AddressInfo.AddressLine1, AddressInfo.AddressLine2, AddressInfo.City, AddressInfo.PostalCode, AddressInfo.SpatialLocation, AddressInfo.StateProvinceID
+--columns wanted from the person.stateprovince table
+StateProvince.StateProvinceCode, StateProvince.CountryRegionCode, StateProvince.Name, StateProvince.TerritoryID
 
 --use the hr.employee table as the left table
 from AdventureWorks2019.HumanResources.Employee as CurrentEmployees
@@ -44,6 +44,12 @@ left join
 --add columns that include address infromation for current employees
 AdventureWorks2019.Person.Address as AddressInfo
 on AddressKey.AddressID = AddressInfo.AddressID
+
+left join
+
+--add columns that include the state and province portion of the address information for current employees
+AdventureWorks2019.Person.StateProvince as StateProvince
+on AddressInfo.StateProvinceID = StateProvince.StateProvinceID
 
 --only want info for current employees (CurrentFlag = 1)
 where CurrentFlag = 1
