@@ -12,8 +12,11 @@ PayHistory.Rate, PayHistory.PayFrequency, PayHistory.RateChangeDate,
 --columns wanted from the person.person table
 Person.PersonType, Person.Demographics,
 
---columns wanted from the person.businessentityaddress table
-AddressKey.AddressID, AddressKey.AddressTypeID
+--column wanted from the person.businessentityaddress table
+AddressKey.AddressID,
+
+--columns wanted from ther person.address table
+AddressInfo.AddressLine1, AddressInfo.AddressLine2, AddressInfo.City, AddressInfo.PostalCode, AddressInfo.SpatialLocation, AddressInfo.StateProvinceID
 
 --use the hr.employee table as the left table
 from AdventureWorks2019.HumanResources.Employee as CurrentEmployees
@@ -35,6 +38,12 @@ left join
 --add columns that include address reference information for current employees
 AdventureWorks2019.Person.BusinessEntityAddress as AddressKey
 on CurrentEmployees.BusinessEntityID = AddressKey.BusinessEntityID
+
+left join
+
+--add columns that include address infromation for current employees
+AdventureWorks2019.Person.Address as AddressInfo
+on AddressKey.AddressID = AddressInfo.AddressID
 
 --only want info for current employees (CurrentFlag = 1)
 where CurrentFlag = 1
