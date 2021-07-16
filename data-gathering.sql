@@ -16,7 +16,10 @@ Person.PersonType, Person.Demographics,
 AddressInfo.AddressLine1, AddressInfo.AddressLine2, AddressInfo.City, AddressInfo.PostalCode, AddressInfo.SpatialLocation,
 
 --columns wanted from the person.stateprovince table
-StateProvince.StateProvinceCode, StateProvince.CountryRegionCode, StateProvince.Name, StateProvince.TerritoryID
+StateProvince.StateProvinceCode, StateProvince.CountryRegionCode, StateProvince.Name, StateProvince.TerritoryID,
+
+--column for rate counts
+RateCounts.NumRates
 
 --use the hr.employee table as the left table
 from AdventureWorks2019.HumanResources.Employee as CurrentEmployees
@@ -60,6 +63,16 @@ from AdventureWorks2019.HumanResources.EmployeePayHistory as PayHistory
 group by  PayHistory.BusinessEntityID
 ) as NewestRateDate
 on CurrentEmployees.BusinessEntityID = NewestRateDate.BusinessEntityID
+
+left join
+
+--sub-query to add count of rates per current employee
+(select
+BusinessEntityID, count(BusinessEntityID) as NumRates
+from AdventureWorks2019.HumanResources.EmployeePayHistory as PayHistory
+group by PayHistory.BusinessEntityID
+) as RateCounts
+on CurrentEmployees.BusinessEntityID = RateCounts.BusinessEntityID
 
 --only want info for current employees (CurrentFlag = 1)
 where CurrentFlag = 1
