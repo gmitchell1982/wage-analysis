@@ -25,11 +25,11 @@ The vast majority of this project is being completed in my spare time between re
 
 ### What Problem Does It Solve?
 
-### What Did I Learn?
-
+### What Did I Learn? (and what problems did I encounter?)
+1) This database uses SQL Server's hierarchyid type for organizational node information which I have no previous experience with handling. I am uncertain if this encoded information provides any more useful information than the combination of department information and organizational level. Because of this lack of information, I am seeking out resources and potential ways of dedcoding the hierarchyid at least enough for it to be used in clustering and/or grouping analyses.
 
 ### What Technologies I Used & Why?
-* MS SQL Server (no point & click allowed)
+* MS SQL Server (Transact-SQL, no point & click allowed)
 * MS SQL Server Management Studio 18
 
 SQL Server was chosen for its combination of breadth of use in the industry and that the developer version for projects like this is free to use.
@@ -51,7 +51,8 @@ Given that this is a portfolio project that is only meant for demostrational pur
 
 
 ## Credits
-[Link To AdventureWorks2019 Download Page](https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms)
+* [Link to Gerald L. Mitchell's GitHub Profile](https://github.com/gmitchell1982)
+* [Link To AdventureWorks2019 Download Page](https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms)
 
 
 ## License
