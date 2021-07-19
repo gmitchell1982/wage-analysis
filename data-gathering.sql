@@ -19,7 +19,10 @@ AddressInfo.AddressLine1, AddressInfo.AddressLine2, AddressInfo.City, AddressInf
 StateProvince.StateProvinceCode, StateProvince.CountryRegionCode, StateProvince.Name, StateProvince.TerritoryID,
 
 --column for rate counts
-RateCounts.NumRates
+RateCounts.NumRates,
+
+--column from hr.employeedeptarmthistory
+DeptHistory.DepartmentID
 
 --use the hr.employee table as the left table
 from AdventureWorks2019.HumanResources.Employee as CurrentEmployees
@@ -73,6 +76,12 @@ from AdventureWorks2019.HumanResources.EmployeePayHistory as PayHistory
 group by PayHistory.BusinessEntityID
 ) as RateCounts
 on CurrentEmployees.BusinessEntityID = RateCounts.BusinessEntityID
+
+left join
+
+--join the information for department history for all current employees
+AdventureWorks2019.HumanResources.EmployeeDepartmentHistory as DeptHistory
+on CurrentEmployees.BusinessEntityID = DeptHistory.BusinessEntityID
 
 --only want info for current employees (CurrentFlag = 1)
 where CurrentFlag = 1
