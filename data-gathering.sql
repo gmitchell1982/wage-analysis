@@ -83,6 +83,15 @@ left join
 AdventureWorks2019.HumanResources.EmployeeDepartmentHistory as DeptHistory
 on CurrentEmployees.BusinessEntityID = DeptHistory.BusinessEntityID
 
+left join
+
+--sub-query to get column of most recent start date in departments per current employee
+(select 
+BusinessEntityID, max(StartDate) as MostRecentStart
+from AdventureWorks2019.HumanResources.EmployeeDepartmentHistory
+group by BusinessEntityID) as NewestDeptDate
+on DeptHistory.BusinessEntityID = NewestDeptDate.BusinessEntityID
+
 --only want info for current employees (CurrentFlag = 1)
 where CurrentFlag = 1
 
@@ -91,3 +100,6 @@ and  AddressKey.AddressTypeID = 2
 
 --also only want the info for the current pay rate of current employees
 and PayHistory.RateChangeDate = NewestRateDate.NewestRateChangeDate
+
+--also only want the info for most recent department of current employees
+and DeptHistory.StartDate = NewestDeptDate.MostRecentStart
