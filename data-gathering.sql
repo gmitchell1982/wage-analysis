@@ -21,8 +21,8 @@ StateProvince.StateProvinceCode, StateProvince.CountryRegionCode, StateProvince.
 --column for rate counts
 RateCounts.NumRates,
 
---column from hr.employeedeptarmthistory
-DeptHistory.DepartmentID
+--columns for department information
+DeptInfo.Name, DeptInfo.GroupName
 
 --use the hr.employee table as the left table
 from AdventureWorks2019.HumanResources.Employee as CurrentEmployees
@@ -91,6 +91,12 @@ BusinessEntityID, max(StartDate) as MostRecentStart
 from AdventureWorks2019.HumanResources.EmployeeDepartmentHistory
 group by BusinessEntityID) as NewestDeptDate
 on DeptHistory.BusinessEntityID = NewestDeptDate.BusinessEntityID
+
+left join
+
+--join for converting department id to actual department information
+AdventureWorks2019.HumanResources.Department as DeptInfo
+on DeptHistory.DepartmentID = DeptInfo.DepartmentID
 
 --only want info for current employees (CurrentFlag = 1)
 where CurrentFlag = 1
