@@ -26,7 +26,7 @@ The vast majority of this project is being completed in my spare time between re
 ### What Problem Does It Solve?
 
 ### What Did I Learn? (and what problems did I encounter?)
-1) This database uses SQL Server's hierarchyid type for organizational node information which I have no previous experience with handling. I am uncertain if this encoded information provides any more useful information than the combination of department information and organizational level. Because of this lack of information, I am seeking out resources and potential ways of dedcoding the hierarchyid at least enough for it to be used in clustering and/or grouping analyses.
+1) Converting SQL Server's hierarchyid type to its string equivalent was much easier (and quicker to run) than anticipated. This string is parsable by R for analysis purposes later.
 
 ### What Technologies I Used & Why?
 * MS SQL Server (Transact-SQL, no point & click allowed)
