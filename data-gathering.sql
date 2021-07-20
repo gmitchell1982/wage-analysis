@@ -4,7 +4,11 @@
 select
 
 --columns wanted from the hr.employee table
-CurrentEmployees.BusinessEntityID, CurrentEmployees.NationalIDNumber, CurrentEmployees.OrganizationNode, CurrentEmployees.OrganizationLevel, CurrentEmployees.JobTitle, CurrentEmployees.BirthDate, CurrentEmployees.MaritalStatus, CurrentEmployees.Gender, CurrentEmployees.HireDate, CurrentEmployees.SalariedFlag, CurrentEmployees.VacationHours, CurrentEmployees.SickLeaveHours,
+CurrentEmployees.BusinessEntityID, CurrentEmployees.NationalIDNumber,
+CurrentEmployees.OrganizationNode.ToString() as OrganizationNode, CurrentEmployees.OrganizationLevel,
+CurrentEmployees.JobTitle, CurrentEmployees.BirthDate, CurrentEmployees.MaritalStatus, CurrentEmployees.Gender,
+CurrentEmployees.HireDate, CurrentEmployees.SalariedFlag, CurrentEmployees.VacationHours,
+CurrentEmployees.SickLeaveHours,
 
 --columns wanted from the hr.employeepayhistory table
 PayHistory.Rate, PayHistory.PayFrequency, PayHistory.RateChangeDate,
@@ -13,7 +17,8 @@ PayHistory.Rate, PayHistory.PayFrequency, PayHistory.RateChangeDate,
 Person.PersonType, Person.Demographics,
 
 --columns wanted from the person.address table
-AddressInfo.AddressLine1, AddressInfo.AddressLine2, AddressInfo.City, AddressInfo.PostalCode, AddressInfo.SpatialLocation,
+AddressInfo.AddressLine1, AddressInfo.AddressLine2, AddressInfo.City, AddressInfo.PostalCode,
+AddressInfo.SpatialLocation,
 
 --columns wanted from the person.stateprovince table
 StateProvince.StateProvinceCode, StateProvince.CountryRegionCode, StateProvince.Name, StateProvince.TerritoryID,
