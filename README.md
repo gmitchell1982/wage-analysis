@@ -27,7 +27,7 @@ The vast majority of this project is being completed in my spare time between re
 
 ### What Did I Learn? (and what problems did I encounter?)
 1) Converting SQL Server's hierarchyid type to its string equivalent was much easier (and quicker to run) than anticipated. This string is parsable by R for analysis purposes later.
-2) The remaining demographic data for employees in this database are listed as links to external XML files. I am going to investigate if SQL Server comes with built-in tools for this extraction. If not, I will do some quick thinking on the possibility of a basic XML scraping tool for this use. Failing the feasibility of that, I will need to locate an acceptable existing tool (probably a package for R) to achieve this data extraction.
+2) Finding a reliable source for actually learning how to extract XML code into an SQL table was quite difficult, I will need more practice at this if I am to fully integrate it into my repertoire; however, I think I can now at least manage basic "scraping" with a reference.
 
 ### What Technologies I Used & Why?
 * MS SQL Server (Transact-SQL, no point & click allowed)
