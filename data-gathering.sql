@@ -14,7 +14,7 @@ CurrentEmployees.SickLeaveHours,
 PayHistory.Rate, PayHistory.PayFrequency, PayHistory.RateChangeDate,
 
 --columns wanted from the person.person table
-Person.PersonType, Person.Demographics,
+Person.PersonType,
 
 --columns wanted from the person.address table
 AddressInfo.AddressLine1, AddressInfo.AddressLine2, AddressInfo.City, AddressInfo.PostalCode,
@@ -27,7 +27,13 @@ StateProvince.StateProvinceCode, StateProvince.CountryRegionCode, StateProvince.
 RateCounts.NumRates,
 
 --columns for department information
-DeptInfo.Name, DeptInfo.GroupName
+DeptInfo.Name, DeptInfo.GroupName,
+
+--columns for storing XML demographics information
+  Demographics.value('declare namespace ns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey"; (/ns:IndividualSurvey/ns:BirthDate)[1]','date') as BirthDate,
+  Demographics.value('declare namespace ns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey"; (/ns:IndividualSurvey/ns:MaritalStatus)[1]','varchar(2)') as MaritalStatus,
+  Demographics.value('declare namespace ns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey"; (/ns:IndividualSurvey/ns:Education)[1]','varchar(50)') as Education,
+  Demographics.value('declare namespace ns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey"; (/ns:IndividualSurvey/ns:CommuteDistance)[1]','varchar(25)') as CommuteDistance
 
 --use the hr.employee table as the left table
 from AdventureWorks2019.HumanResources.Employee as CurrentEmployees
