@@ -27,7 +27,7 @@ StateProvince.StateProvinceCode, StateProvince.CountryRegionCode, StateProvince.
 RateCounts.NumRates,
 
 --columns for department information
-DeptInfo.Name, DeptInfo.GroupName,
+DeptInfo.Name as DeptName, DeptInfo.GroupName,
 
 --columns for storing XML demographics information
   Demographics.value('declare namespace ns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey"; (/ns:IndividualSurvey/ns:Education)[1]','varchar(50)') as Education,
