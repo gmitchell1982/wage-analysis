@@ -29,6 +29,9 @@ RateCounts.NumRates,
 --columns for department information
 DeptInfo.Name as DeptName, DeptInfo.GroupName,
 
+--columns for shift information
+DeptHistory.ShiftID,
+
 --columns for storing XML demographics information
   Demographics.value('declare namespace ns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey"; (/ns:IndividualSurvey/ns:Education)[1]','varchar(50)') as Education,
   Demographics.value('declare namespace ns="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey"; (/ns:IndividualSurvey/ns:CommuteDistance)[1]','varchar(25)') as CommuteDistance
