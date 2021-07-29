@@ -8,7 +8,7 @@ CurrentEmployees.BusinessEntityID, CurrentEmployees.NationalIDNumber,
 CurrentEmployees.OrganizationNode.ToString() as OrganizationNode, CurrentEmployees.OrganizationLevel,
 CurrentEmployees.JobTitle, CurrentEmployees.BirthDate, CurrentEmployees.MaritalStatus, CurrentEmployees.Gender,
 CurrentEmployees.HireDate, CurrentEmployees.SalariedFlag, CurrentEmployees.VacationHours,
-CurrentEmployees.SickLeaveHours,
+CurrentEmployees.SickLeaveHours, CurrentEmployees.CurrentFlag,
 
 --columns wanted from the hr.employeepayhistory table
 PayHistory.Rate, PayHistory.PayFrequency, PayHistory.RateChangeDate,
@@ -107,14 +107,11 @@ left join
 AdventureWorks2019.HumanResources.Department as DeptInfo
 on DeptHistory.DepartmentID = DeptInfo.DepartmentID
 
---only want info for current employees (CurrentFlag = 1)
-where CurrentFlag = 1
-
 --also only want info that uses home addresses for people (AddressTypeID = 2)
-and  AddressKey.AddressTypeID = 2
+where  AddressKey.AddressTypeID = 2
 
---also only want the info for the current pay rate of current employees
+--also only want the info for the most recent pay rate of people
 and PayHistory.RateChangeDate = NewestRateDate.NewestRateChangeDate
 
---also only want the info for most recent department of current employees
+--also only want the info for most recent department of people
 and DeptHistory.StartDate = NewestDeptDate.MostRecentStart

@@ -36,9 +36,8 @@ The vast majority of this project is being completed in my spare time between re
 SQL Server was chosen for its combination of breadth of use in the industry and that the developer version for projects like this is free to use.
 
 ### Ideas for Future Implementation
-- [ ] change NumRates to Raises & Cuts
+- [ ] change NumRates to RateRaises & RateCuts
 - [ ] add ShiftID to allow for confound control in potential shift bonuses
-- [ ] add in past employees to look for firing/quitting biases
 - [ ] add second table for sales info (prefer profit info) per region to allow for confound control of lower achieveing areas also giving lower pay to everyone
 - [ ] attempt to find external cost of living information to allow control of geographical confound (may be difficult since data spans multiple countries and multiple currency, unless assumption is made of all reportings in DB as USD)
 - [ ] decide if OOIS for job titles would provide any benefit to the analysis (but probably not)
